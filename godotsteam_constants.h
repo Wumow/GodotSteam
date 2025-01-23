@@ -1,12 +1,18 @@
-#include "steam/steam_api.h"
+#ifndef GODOTSTEAM_CONSTANTS_H
+#define GODOTSTEAM_CONSTANTS_H
 
-// Define Steam API constants
+
+// Constants with 'deprecated/': these were listed in the SDK docs but do not exist in the header files; safe to remove probably
+// Possibly deprecated or never existed?
+#define ACCOUNT_ID_INVALID k_uAccountIdInvalid
 #define API_CALL_INVALID k_uAPICallInvalid
 #define APP_ID_INVALID k_uAppIdInvalid
 #define AUTH_TICKET_INVALID k_HAuthTicketInvalid
 #define DEPOT_ID_INVALID k_uDepotIdInvalid
 #define GAME_EXTRA_INFO_MAX k_cchGameExtraInfoMax
 #define INVALID_BREAKPAD_HANDLE 0 //deprecated?
+#define QUERY_PORT_ERROR 0xFFFE //deprecated?
+#define QUERY_PORT_NOT_INITIALIZED 0xFFFF //deprecated?
 #define STEAM_ACCOUNT_ID_MASK k_unSteamAccountIDMask
 #define STEAM_ACCOUNT_INSTANCE_MASK k_unSteamAccountInstanceMask
 #define STEAM_BUFFER_SIZE 255 //deprecated?
@@ -15,12 +21,12 @@
 #define STEAM_USER_CONSOLE_INSTANCE 2 //deprecated?
 #define STEAM_USER_DESKTOP_INSTANCE k_unSteamUserDefaultInstance
 #define STEAM_USER_WEB_INSTANCE 4 //deprecated?
-#define QUERY_PORT_ERROR 0xFFFE //deprecated?
-#define QUERY_PORT_NOT_INITIALIZED 0xFFFF //deprecated?
 
 // Define Friends constants
 #define CHAT_METADATA_MAX k_cubChatMetadataMax
 #define ENUMERATED_FOLLOWERS_MAX k_cEnumerateFollowersMax
+#define FRIEND_GAME_INFO_QUERY_PORT_ERROR k_usFriendGameInfoQueryPort_Error
+#define FRIEND_GAME_INFO_QUERY_PORT_NOT_INITIALIZED k_usFriendGameInfoQueryPort_NotInitialized
 #define FRIENDS_GROUP_LIMIT k_cFriendsGroupLimit
 #define INVALID_FRIEND_GROUP_ID k_FriendsGroupID_Invalid
 #define MAX_FRIENDS_GROUP_NAME k_cchMaxFriendsGroupName
@@ -38,6 +44,8 @@
 #define HTTPREQUEST_INVALID_HANDLE INVALID_HTTPREQUEST_HANDLE
 
 // Define Input constants
+#define INPUT_HANDLE_ALL_CONTROLLERS STEAM_INPUT_HANDLE_ALL_CONTROLLERS
+#define INPUT_MAX_ACTIVE_LAYERS STEAM_INPUT_MAX_ACTIVE_LAYERS
 #define INPUT_MAX_ANALOG_ACTIONS STEAM_INPUT_MAX_ANALOG_ACTIONS
 #define INPUT_MAX_ANALOG_ACTION_DATA STEAM_INPUT_MAX_ANALOG_ACTION_DATA
 #define INPUT_MAX_COUNT STEAM_INPUT_MAX_COUNT
@@ -68,21 +76,40 @@
 #define MUSIC_NAME_MAX_LENGTH k_SteamMusicNameMaxLength
 #define MUSIC_PNG_MAX_LENGTH k_SteamMusicPNGMaxLength
 
-// Define Networking Message constants
-#define NETWORKING_SEND_NO_DELAY k_EP2PSendReliable
-#define NETWORKING_SEND_NO_NAGLE k_EP2PSendUnreliableNoDelay
-#define NETWORKING_SEND_RELIABLE k_EP2PSendReliableWithBuffering
-#define NETWORKING_SEND_UNRELIABLE k_EP2PSendUnreliable
-
 // Define Networking Socket constants
 #define MAX_STEAM_PACKET_SIZE k_cbMaxSteamNetworkingSocketsMessageSizeSend
 
-// Define Remote Play constants
-#define DEVICE_FORM_FACTOR_COMPUTER k_ESteamDeviceFormFactorComputer
-#define DEVICE_FORM_FACTOR_PHONE k_ESteamDeviceFormFactorPhone
-#define DEVICE_FORM_FACTOR_TABLET k_ESteamDeviceFormFactorTablet
-#define DEVICE_FORM_FACTOR_TV k_ESteamDeviceFormFactorTV
-#define DEVICE_FORM_FACTOR_UNKNOWN k_ESteamDeviceFormFactorUnknown
+// Define Networking Types constants | Found in steamnetworkingtypes.h
+#define LISTEN_SOCKET_INVALID k_HSteamListenSocket_Invalid
+#define MAX_NETWORKING_ERROR_MESSAGE k_cchMaxSteamNetworkingErrMsg
+#define MAX_NETWORKING_PING_LOCATION_STRING k_cchMaxSteamNetworkingPingLocationString
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_DEFAULT k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Default
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_DISABLE k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Disable
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_RELAY k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Relay
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_PRIVATE k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Private
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_PUBLIC k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Public
+#define NETWORKING_CONFIG_P2P_TRANSPORT_ICE_ALL k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_All
+#define NETWORKING_CONNECTION_INFO_FLAG_UNAUTHENTICATED k_nSteamNetworkConnectionInfoFlags_Unauthenticated
+#define NETWORKING_CONNECTION_INFO_FLAG_UNENCRYPTED k_nSteamNetworkConnectionInfoFlags_Unencrypted
+#define NETWORKING_CONNECTION_INFO_FLAG_LOOPBACK_BUFFERS k_nSteamNetworkConnectionInfoFlags_LoopbackBuffers
+#define NETWORKING_CONNECTION_INFO_FLAG_FAST k_nSteamNetworkConnectionInfoFlags_Fast
+#define NETWORKING_CONNECTION_INFO_FLAG_RELAYED k_nSteamNetworkConnectionInfoFlags_Relayed
+#define NETWORKING_CONNECTION_INFO_FLAG_DUALWIFI k_nSteamNetworkConnectionInfoFlags_DualWifi
+#define NETWORKING_CONNECTION_INVALID k_HSteamNetConnection_Invalid
+#define NETWORKING_MAX_CONNECTION_APP_NAME k_cchSteamNetworkingMaxConnectionAppName
+#define NETWORKING_MAX_CONNECTION_CLOSE_REASON k_cchSteamNetworkingMaxConnectionCloseReason
+#define NETWORKING_MAX_CONNECTION_DESCRIPTION k_cchSteamNetworkingMaxConnectionDescription
+#define NETWORKING_PING_FAILED k_nSteamNetworkingPing_Failed
+#define NETWORKING_PING_UNKNOWN k_nSteamNetworkingPing_Unknown
+#define NETWORKING_SEND_UNRELIABLE k_nSteamNetworkingSend_Unreliable
+#define NETWORKING_SEND_NO_NAGLE k_nSteamNetworkingSend_NoNagle
+#define NETWORKING_SEND_URELIABLE_NO_NAGLE k_nSteamNetworkingSend_UnreliableNoNagle
+#define NETWORKING_SEND_NO_DELAY k_nSteamNetworkingSend_NoDelay
+#define NETWORKING_SEND_UNRELIABLE_NO_DELAY k_nSteamNetworkingSend_UnreliableNoDelay
+#define NETWORKING_SEND_RELIABLE k_nSteamNetworkingSend_Reliable
+#define NETWORKING_SEND_RELIABLE_NO_NAGLE k_nSteamNetworkingSend_ReliableNoNagle
+#define NETWORKING_SEND_USE_CURRENT_THREAD k_nSteamNetworkingSend_UseCurrentThread
+#define NETWORKING_SEND_AUTORESTART_BROKEN_SESSION k_nSteamNetworkingSend_AutoRestartBrokenSession
 
 // Define Remote Storage constants
 #define ENUMERATE_PUBLISHED_FILES_MAX_RESULTS k_unEnumeratePublishedFilesMaxResults
@@ -92,7 +119,7 @@
 #define PUBLISHED_DOCUMENT_DESCRIPTION_MAX k_cchPublishedDocumentDescriptionMax
 #define PUBLISHED_DOCUMENT_TITLE_MAX k_cchPublishedDocumentTitleMax
 #define PUBLISHED_FILE_ID_INVALID k_PublishedFileIdInvalid
-#define PUBLISHED_FILE_UPDATE_HANDLE_INVALID k_PublishedFileIdInvalid
+#define PUBLISHED_FILE_UPDATE_HANDLE_INVALID k_PublishedFileUpdateHandleInvalid
 #define PUBLISHED_FILE_URL_MAX k_cchPublishedFileURLMax
 #define TAG_LIST_MAX k_cchTagListMax
 #define UGC_FILE_STREAM_HANDLE_INVALID k_UGCFileStreamHandleInvalid
@@ -106,6 +133,12 @@
 #define UFS_TAG_TYPE_MAX k_cubUFSTagTypeMax
 #define UFS_TAG_VALUE_MAX k_cubUFSTagValueMax
 
+// Define Timeline constants
+#define MAX_PHASE_ID_LENGTH k_cchMaxPhaseIDLength
+#define MAX_TIMELINE_PRIORITY k_unMaxTimelinePriority
+#define MAX_TIMELINE_EVENT_DURATION k_flMaxTimelineEventDuration
+#define TIMELINE_PRIORITY_KEEP_CURRENT_VALUE k_unTimelinePriority_KeepCurrentValue
+
 // Define UGC constants
 #define DEVELOPER_METADATA_MAX k_cchDeveloperMetadataMax
 #define NUM_UGC_RESULTS_PER_PAGE kNumUGCResultsPerPage
@@ -116,3 +149,6 @@
 #define LEADERBOARD_DETAIL_MAX k_cLeaderboardDetailsMax
 #define LEADERBOARD_NAME_MAX k_cchLeaderboardNameMax
 #define STAT_NAME_MAX k_cchStatNameMax
+
+
+#endif // GODOTSTEAM_CONSTANTS_H
